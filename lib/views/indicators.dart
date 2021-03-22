@@ -9,34 +9,37 @@ class Indicators extends StatefulWidget {
 }
 
 class _IndicatorsState extends State<Indicators> {
-  List<charts.Series<Pollution, String>> _seriesData;
-  List<charts.Series<Task, String>> _seriesPieData;
+  List<charts.Series<Insecrurity, String>> _seriesData;
+  List<charts.Series<Exportation, String>> _seriesPieData;
   List<charts.Series<Sales, int>> _seriesLineData;
 
   _generateData() {
     var data1 = [
-      new Pollution(1980, 'USA', 30),
-      new Pollution(1980, 'Asia', 40),
-      new Pollution(1980, 'Europe', 10),
+      new Insecrurity("Dec'14", 33),
+      new Insecrurity("Dec'15", 26),
+      new Insecrurity("Dec'16", 35),
     ];
     var data2 = [
-      new Pollution(1985, 'USA', 100),
-      new Pollution(1980, 'Asia', 150),
-      new Pollution(1985, 'Europe', 80),
-    ];
-    var data3 = [
-      new Pollution(1985, 'USA', 200),
-      new Pollution(1980, 'Asia', 300),
-      new Pollution(1985, 'Europe', 180),
+      new Insecrurity("Dec'14", 6),
+      new Insecrurity("Dec'15", 5),
+      new Insecrurity("Dec'16", 8),
     ];
 
     var piedata = [
-      new Task('Work', 35.8, Color(0xff3366cc)),
-      new Task('Eat', 8.3, Color(0xff990099)),
-      new Task('Commute', 10.8, Color(0xff109618)),
-      new Task('TV', 15.6, Color(0xfffdbe19)),
-      new Task('Sleep', 19.2, Color(0xffff9900)),
-      new Task('Other', 10.3, Color(0xffdc3912)),
+      new Exportation("Huile d'olive vierge lampante et ses fractions", 2.0,
+          Color(0xff3366cc)),
+      new Exportation("Huile d'olive vierge extra et ses fractions", 2.1,
+          Color(0xff990099)),
+      new Exportation(
+          "Huile d'olive vierge extra et ses fractions (entre 1 et 5 litres)",
+          0.3,
+          Color(0xff109618)),
+      new Exportation("Huile d'olive vierge extra et ses fractions (en vrac)",
+          14.8, Color(0xfffdbe19)),
+      new Exportation(
+          "Huile d'olive vierge et ses fractions", 0.6, Color(0xffff9900)),
+      new Exportation("Autres huile d'olive vierge et ses fractions (en vrac)",
+          0.2, Color(0xffdc3912)),
     ];
 
     var linesalesdata = [
@@ -67,49 +70,37 @@ class _IndicatorsState extends State<Indicators> {
 
     _seriesData.add(
       charts.Series(
-        domainFn: (Pollution pollution, _) => pollution.place,
-        measureFn: (Pollution pollution, _) => pollution.quantity,
-        id: '2017',
+        domainFn: (Insecrurity insecurity, _) => insecurity.date,
+        measureFn: (Insecrurity insecurity, _) => insecurity.quantity,
+        id: "Insécurité sévere",
         data: data1,
         fillPatternFn: (_, __) => charts.FillPatternType.solid,
-        fillColorFn: (Pollution pollution, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xff990099)),
+        fillColorFn: (Insecrurity insecrurity, _) =>
+            charts.ColorUtil.fromDartColor(Colors.red[800]),
       ),
     );
 
     _seriesData.add(
       charts.Series(
-        domainFn: (Pollution pollution, _) => pollution.place,
-        measureFn: (Pollution pollution, _) => pollution.quantity,
-        id: '2018',
+        domainFn: (Insecrurity insecrurity, _) => insecrurity.date,
+        measureFn: (Insecrurity insecrurity, _) => insecrurity.quantity,
+        id: "Insécurité modérée",
         data: data2,
         fillPatternFn: (_, __) => charts.FillPatternType.solid,
-        fillColorFn: (Pollution pollution, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xff109618)),
-      ),
-    );
-
-    _seriesData.add(
-      charts.Series(
-        domainFn: (Pollution pollution, _) => pollution.place,
-        measureFn: (Pollution pollution, _) => pollution.quantity,
-        id: '2019',
-        data: data3,
-        fillPatternFn: (_, __) => charts.FillPatternType.solid,
-        fillColorFn: (Pollution pollution, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xffff9900)),
+        fillColorFn: (Insecrurity insecrurity, _) =>
+            charts.ColorUtil.fromDartColor(Colors.red[400]),
       ),
     );
 
     _seriesPieData.add(
       charts.Series(
-        domainFn: (Task task, _) => task.task,
-        measureFn: (Task task, _) => task.taskvalue,
-        colorFn: (Task task, _) =>
-            charts.ColorUtil.fromDartColor(task.colorval),
+        domainFn: (Exportation exportation, _) => exportation.name,
+        measureFn: (Exportation exportation, _) => exportation.value,
+        colorFn: (Exportation exportation, _) =>
+            charts.ColorUtil.fromDartColor(exportation.colorval),
         id: 'Air Pollution',
         data: piedata,
-        labelAccessorFn: (Task row, _) => '${row.taskvalue}',
+        labelAccessorFn: (Exportation row, _) => '${row.value}',
       ),
     );
 
@@ -146,9 +137,9 @@ class _IndicatorsState extends State<Indicators> {
   void initState() {
     super.initState();
     // ignore: deprecated_member_use
-    _seriesData = List<charts.Series<Pollution, String>>();
+    _seriesData = List<charts.Series<Insecrurity, String>>();
     // ignore: deprecated_member_use
-    _seriesPieData = List<charts.Series<Task, String>>();
+    _seriesPieData = List<charts.Series<Exportation, String>>();
     // ignore: deprecated_member_use
     _seriesLineData = List<charts.Series<Sales, int>>();
     _generateData();
@@ -183,7 +174,7 @@ class _IndicatorsState extends State<Indicators> {
                   child: Column(
                     children: <Widget>[
                       Text(
-                        'SO₂ emissions, by world region (in million tonnes)',
+                        "Tendances de la situation d'insécurité alimentaire",
                         style: TextStyle(
                             fontSize: 24.0, fontWeight: FontWeight.bold),
                       ),
@@ -208,9 +199,9 @@ class _IndicatorsState extends State<Indicators> {
                   child: Column(
                     children: <Widget>[
                       Text(
-                        'Time spent on daily tasks',
+                        "Evolution des quantités exportées de l'huile d'olive tunisienne au cours du mois de novembre 2020",
                         style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
+                            fontSize: 16.0, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 10.0,
@@ -224,7 +215,6 @@ class _IndicatorsState extends State<Indicators> {
                                 outsideJustification:
                                     charts.OutsideJustification.endDrawArea,
                                 horizontalFirst: false,
-                                desiredMaxRows: 2,
                                 cellPadding: new EdgeInsets.only(
                                     right: 4.0, bottom: 4.0),
                                 entryTextStyle: charts.TextStyleSpec(
@@ -291,7 +281,7 @@ class _IndicatorsState extends State<Indicators> {
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Container(
-                height: 520,
+                height: 10,
                 child: Center(child: MapPage()),
               ),
             )
@@ -302,20 +292,19 @@ class _IndicatorsState extends State<Indicators> {
   }
 }
 
-class Pollution {
-  String place;
-  int year;
+class Insecrurity {
+  String date;
   int quantity;
 
-  Pollution(this.year, this.place, this.quantity);
+  Insecrurity(this.date, this.quantity);
 }
 
-class Task {
-  String task;
-  double taskvalue;
+class Exportation {
+  String name;
+  double value;
   Color colorval;
 
-  Task(this.task, this.taskvalue, this.colorval);
+  Exportation(this.name, this.value, this.colorval);
 }
 
 class Sales {

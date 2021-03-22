@@ -16,7 +16,6 @@ class _MapPageState extends State<MapPage> {
 
   List<Model> _data;
   MapShapeSource _mapSource;
-
   @override
   void initState() {
     _data = const <Model>[
@@ -54,6 +53,28 @@ class _MapPageState extends State<MapPage> {
       title: const MapTitle('Poverty'),
       layers: <MapShapeLayer>[
         MapShapeLayer(
+          onSelectionChanged: (int selected) {
+            return showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(32.0))),
+                    content: Column(
+                      children: [
+                        Text(
+                          _data[selected].state +
+                              " : " +
+                              _data[selected].stateCode,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                            "Info about " + _data[selected].state.toLowerCase())
+                      ],
+                    ),
+                  );
+                });
+          },
           source: _mapSource,
           showDataLabels: true,
           legend: MapLegend(MapElement.shape),

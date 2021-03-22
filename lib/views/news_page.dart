@@ -31,7 +31,6 @@ class _NewsPageState extends State<NewsPage> {
   void initState() {
     _loading = true;
     super.initState();
-
     categories = getCategories();
     getNews();
   }
@@ -110,12 +109,12 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CategoryNews(
-                      newsCategory: categoryName.toLowerCase(),
-                    )));
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => CategoryNews(
+        //               newsCategory: categoryName.toLowerCase(),
+        //             )));
       },
       child: Container(
         margin: EdgeInsets.only(right: 14),

@@ -76,12 +76,12 @@ class NewsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ArticleView(
-                      articleName: title,
-                    )));
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => ArticleView(
+        //               articleName: title,
+        //             )));
       },
       child: Container(
           margin: EdgeInsets.only(bottom: 24),
@@ -100,8 +100,8 @@ class NewsTile extends StatelessWidget {
                 children: <Widget>[
                   ClipRRect(
                       borderRadius: BorderRadius.circular(6),
-                      child: Image.network(
-                        imgUrl,
+                      child: Image.asset(
+                        "assets/images/" + imgUrl,
                         height: 200,
                         width: MediaQuery.of(context).size.width,
                         fit: BoxFit.cover,
