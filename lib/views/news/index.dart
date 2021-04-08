@@ -1,10 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:onagri/helper/data.dart';
+import 'package:onagri/views/news/data.dart';
 import 'package:onagri/helper/widgets.dart';
-import 'package:onagri/models/categorie_model.dart';
-import 'package:onagri/views/categorie_news.dart';
-import '../helper/news.dart';
+import 'package:onagri/models/categorie.dart';
+import 'package:onagri/views/news/categoryCard.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -42,7 +40,7 @@ class _NewsPageState extends State<NewsPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "News",
+          "Actualités",
           style: TextStyle(color: Colors.white60, fontWeight: FontWeight.w600),
         ),
         backgroundColor: Color(0xff336633),
@@ -95,58 +93,6 @@ class _NewsPageState extends State<NewsPage> {
                   ),
                 ),
               ),
-      ),
-    );
-  }
-}
-
-class CategoryCard extends StatelessWidget {
-  final String imageAssetUrl, categoryName;
-
-  CategoryCard({this.imageAssetUrl, this.categoryName});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => CategoryNews(
-        //               newsCategory: categoryName.toLowerCase(),
-        //             )));
-      },
-      child: Container(
-        margin: EdgeInsets.only(right: 14),
-        child: Stack(
-          children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: CachedNetworkImage(
-                imageUrl: imageAssetUrl,
-                height: 60,
-                width: 120,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              height: 60,
-              width: 120,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.black26),
-              child: Text(
-                categoryName,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500),
-              ),
-            )
-          ],
-        ),
       ),
     );
   }

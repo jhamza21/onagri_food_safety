@@ -2,7 +2,7 @@
     package="com.serpi.onagri">
             <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="ONAGRI"
+        android:label="FSMS-ONAGRI"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

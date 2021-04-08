@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onagri/views/news_page.dart';
+import 'package:onagri/views/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'ONAGRI',
       theme: ThemeData(
-        primaryColor: Color(0xffff6101),
+        primaryColor: Colors.green,
       ),
-      home: NewsPage(),
+      home: Home(),
     );
   }
 }

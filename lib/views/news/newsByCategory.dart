@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onagri/helper/news.dart';
 import 'package:onagri/helper/widgets.dart';
+import 'package:onagri/views/news/data.dart';
 
 class CategoryNews extends StatefulWidget {
   final String newsCategory;

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:onagri/views/about.dart';
-import 'package:onagri/views/article_view.dart';
-import 'package:onagri/views/contact.dart';
-import 'package:onagri/views/indicators.dart';
+import 'package:onagri/views/about_us.dart';
+import 'package:onagri/views/faq.dart';
+import 'package:onagri/views/home.dart';
+import 'package:onagri/views/contact_us.dart';
+import 'package:onagri/views/indicators/index.dart';
 
 // ignore: non_constant_identifier_names
 Widget MyDrawer(context) {
@@ -22,12 +23,24 @@ Widget MyDrawer(context) {
           ),
           Padding(padding: EdgeInsets.only(top: 20.0)),
           ListTile(
-              leading: Icon(Icons.bar_chart),
+              leading: Icon(Icons.home),
               title: Text(
-                'Indicators',
+                'Accueil',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Home()));
+              }),
+          ListTile(
+              leading: Icon(Icons.bar_chart),
+              title: Text(
+                'Indicateurs',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Indicators()));
               }),
@@ -35,29 +48,48 @@ Widget MyDrawer(context) {
             onTap: () {},
             leading: Icon(Icons.settings),
             title: Text(
-              'Settings',
+              'Paramètres',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           Divider(),
           ListTile(
             leading: Icon(Icons.contact_support_outlined),
-            title: Text('About'),
+            title: Text('A propos'),
             onTap: () {
+              Navigator.of(context).pop();
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => About()));
             },
           ),
           ListTile(
-            leading: Icon(Icons.contact_mail_outlined),
-            title: Text('Contact us'),
+            leading: Icon(Icons.question_answer),
+            title: Text('FAQ'),
             onTap: () {
+              Navigator.of(context).pop();
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Faq()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.contact_mail_outlined),
+            title: Text('Nous contacter'),
+            onTap: () {
+              Navigator.of(context).pop();
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Contact()));
             },
           ),
         ],
       ),
+    ),
+  );
+}
+
+waitingScreen() {
+  return Center(
+    child: CircularProgressIndicator(
+      valueColor: new AlwaysStoppedAnimation<Color>(Color(0xff336633)),
     ),
   );
 }
